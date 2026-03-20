@@ -1,0 +1,8 @@
+torch
+torchvision
+opencv-python
+facenet-pytorch
+albumentations
+scikit-learn
+tqdm
+numpy
