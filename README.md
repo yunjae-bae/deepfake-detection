@@ -1,20 +1,21 @@
-# Deepfake Detection — EfficientNet-B3
+# Deepfake Detection
 
-Face-based classification using Celeb-DF-v2 videos.
+Celeb-DF-v2 video classification using MTCNN face crops and an ImageNet-pretrained EfficientNet-B3. Frames from each source video stay in the same training or validation split.
 
-## Pipeline
+## Usage
 
-1. Sample video frames and extract face crops with MTCNN.
-2. Fine-tune EfficientNet-B3 with augmentation and early stopping.
+Use Python 3.10 or 3.11:
 
-## Dataset
-
-[Celeb-DF-v2](https://github.com/yuezunli/celeb-deepfakeforensics)
-
-## Installation
-
-```bash
+```sh
 pip install -r requirements.txt
 ```
 
-The original environment targeted Python 3.10 or 3.11.
+Place Celeb-DF-v2 under `train_data/Celeb-DF-v2/` and run `deepfake_detection.ipynb` from top to bottom. Each class needs at least two videos with usable faces.
+
+Preprocessing saves crops under `train_data/cropped_faces/Celeb-DF-v2/`, grouped by source video. Regenerate crops if using the old flat directory layout. Training saves the best checkpoint to `best_model.pth`.
+
+Run offline preprocessing checks with `python test_preprocessing.py`.
+
+## Sources
+
+- [Celeb-DF-v2](https://github.com/yuezunli/celeb-deepfakeforensics): Yuezun Li, Xin Yang, Pu Sun, Honggang Qi and Siwei Lyu. *Celeb-DF: A Large-scale Challenging Dataset for DeepFake Forensics*. CVPR, 2020.
